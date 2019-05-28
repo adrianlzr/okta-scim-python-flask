@@ -1,12 +1,5 @@
 # Python-Flask SCIM Server Example. 
-
-This is just a test.
-
-
-## This is another test. 
-
-# some weird test. 
-
---------------------
-
-Another weird text.
+Adding to this new branch - scim_upgrade.
+------------------
+## Branch name: scim_upgrade. 
+Performing upgrades to master branch.
