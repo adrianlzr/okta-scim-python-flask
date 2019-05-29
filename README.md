@@ -48,3 +48,9 @@ Start ngrok to listen on port 5000 ( port used by the scim server).
 ngrok http 5000
 ```
 Now you can access http://localhost:4040 to monitor the trafic to your scim server running on port 5000. 
+
+# Bugs?
+If you find any bugs with this SCIM server please open a new Issue and it will be investigated. 
+
+# Suggestions? 
+Please feel free to contact me at adrian.lazar@okta.com. 
