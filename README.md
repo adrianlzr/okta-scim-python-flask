@@ -1,5 +1,6 @@
 # Python-Flask SCIM Server Example. 
 Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, created as a POC for the Okta SCIM Server. Has successfully passed the [CRUD Okta Runscope test](https://www.okta.com/integrate/documentation/scim/#run-the-second-set-of-runscope-tests-okta-scim-11-crud-test-or-okta-scim-20-crud-test)
+* Written based on [Dragos Gaftoneanu's PHP SCIM Server.](https://github.com/dragosgaftoneanu-okta/php-scim-server)
 
 ℹ️ Disclaimer: This SCIM server was built in order to troubleshoot different SCIM use-cases and not to be used in production. The script is provided AS IS without warranty of any kind. Okta disclaims all implied warranties including, without limitation, any implied warranties of fitness for a particular purpose. We highly recommend testing scripts in a preview environment if possible.
 
