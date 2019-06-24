@@ -12,7 +12,7 @@ ops_groups = Groups()
 
 app = Flask(__name__)
 
-@app.route("/users")
+@app.route("/scim/users")
 @crossdomain(origin='*')
 def users():
     req_url = request.base_url
@@ -30,7 +30,7 @@ def users():
     zip_users = zip(all_users, profileUrls)
     users = dict(zip_users)
     return render_template("index.html",users=users, title="All Users")
-@app.route("/users/<string:userId>")
+@app.route("/scim/users/<string:userId>")
 @crossdomain(origin='*')
 def user(userId):
     req_url = request.base_url
