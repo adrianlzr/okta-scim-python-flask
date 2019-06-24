@@ -52,7 +52,7 @@ def default_scim_route():
 
 @app.route("/scim/v2/Users", methods = ['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method='basic_auth')
 def users_route():
     req_url = request.base_url
     
@@ -126,7 +126,7 @@ def users_route():
 
 @app.route("/scim/v2/Users/<string:id>", methods = ['GET', 'PUT', 'PATCH'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method='basic_auth')
 def users_by_id_route(id):
     id = str(id)
     req_url = request.base_url
@@ -181,7 +181,7 @@ def users_by_id_route(id):
 
 @app.route("/scim/v2/Groups", methods = ['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method='basic_auth')
 def groups_route():    
     req_url = request.base_url
 
@@ -255,7 +255,7 @@ def groups_route():
 
 @app.route("/scim/v2/Groups/<string:id>", methods = ['GET', 'PUT', 'PATCH', 'DELETE'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method='basic_auth')
 def groups_by_id_route(id):
     id = str(id)
     req_url = request.base_url
