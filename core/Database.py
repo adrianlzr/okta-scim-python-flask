@@ -4,7 +4,7 @@ import uuid
 import time
 uid = None
 
-mydb = mysql.connector.connect(host='localhost', user='root', database='scim')
+mydb = mysql.connector.connect(host='localhost', user='adrian', password='Bimmere46', database='scim')
 mycursor = mydb.cursor()
 scim_core = SCIMCore()
 
