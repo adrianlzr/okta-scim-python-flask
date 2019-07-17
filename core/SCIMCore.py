@@ -87,7 +87,10 @@ class SCIMCore():
             scim_resources["startIndex"] = startIndex
         else:
             scim_resources["startIndex"] = 0
-        scim_resources["totalResults"] = totalResults   
+        if scim_resources["Resources"] != []:
+            scim_resources["totalResults"] = totalResults
+        else:
+            scim_resources["totalResults"] = 0
         return scim_resources
     
     def CreateSCIMGroup(self, id, displayName, req_url, group_location=None, members=None):
