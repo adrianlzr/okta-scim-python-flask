@@ -17,7 +17,9 @@ def auth_required(method=None):
                 creds = username+":"+password
                 b64_creds = base64.b64encode(creds.encode())
                 if auth_header != b64_creds.decode():
-                    return Response(render_template("403.html"), status=403, mimetype="text/html")
+                    return False
+                else:
+                    return True
             def oauth2():
                 auth_header = get_header()
                 is_valid = verify_jwt(auth_header)
@@ -37,10 +39,10 @@ def auth_required(method=None):
                 return active
             if method == 'basic_auth':
                 auth = basic_auth("user", "p@ss")
-                if auth is None:
+                if auth == True:
                     return f(*args, **kwargs)
                 else:
-                    return auth
+                    return Response(render_template("403.html"), status=403, mimetype="text/html")
             if method == 'oauth2':
                 auth = oauth2()
                 if auth == True:
