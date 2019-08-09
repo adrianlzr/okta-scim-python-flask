@@ -5,10 +5,10 @@ from core.Database import Database
 from core.RequireAuth import auth_required
 from operations.Users import Users
 from operations. Groups import Groups
-
+from sp_config import data
 ops_users = Users()
 ops_groups = Groups()
-
+spc_data = data
 
 app = Flask(__name__)
 
@@ -49,7 +49,16 @@ def default_scim_route():
     mimetype='text/html'   
     )
     return response
-
+@app.route("/scim/v2/ServiceProviderConfigs", methods =['GET'])
+@crossdomain(origin='*')
+def service_provider_config_route():
+    data = spc_data
+    response = app.response_class(
+        response = json.dumps(data),
+        status = 200,
+        mimetype = 'application/json'
+    )
+    return response
 @app.route("/scim/v2/Users", methods = ['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
 @auth_required(method='oauth2')

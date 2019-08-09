@@ -22,7 +22,10 @@ def auth_required(method=None):
                     return True
             def oauth2():
                 auth_header = get_header()
-                is_valid = verify_jwt(auth_header)
+                if 'empty' not in auth_header:
+                    is_valid = verify_jwt(auth_header)
+                else:
+                    is_valid = False
                 return is_valid
             def verify_jwt(jwt):
                 client_id = "0oal5v65arFcwMlBr0h7"
