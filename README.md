@@ -29,6 +29,8 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 * /scim/v2/Groups - Base Groups path: Supported HTTP methods: [**GET**, **POST**]
 * /scim/v2/Groups/**{groupId}** - Individual Group path: Supported HTTP methods: [**GET**, **POST**, **PATCH**, **DELETE**] - *PUT will be supported soon.*
 
+-------------
+
 ## Getting started.
 ### Local environment setup
 **This example assumes you are using a Windows machine. If you are using a different OS, change the path mindset accordingly.**
