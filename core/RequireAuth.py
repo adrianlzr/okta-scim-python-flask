@@ -1,6 +1,6 @@
 import requests, base64, json
 from flask import request, Response, render_template
-def auth_required(method=None):
+def auth_required(method=None, okta=True):
     def decorator(f):
         def wrapper(*args, **kwargs):
             def get_header():
@@ -20,15 +20,24 @@ def auth_required(method=None):
                     return False
                 else:
                     return True
-            def oauth2():
-                auth_header = get_header()
-                if 'empty' not in auth_header:
-                    is_valid = verify_jwt(auth_header)
+            def oauth2(okta):
+                jwt = get_header()
+                if 'empty' not in jwt:
+                    if okta: 
+                        is_valid = okta_jwt_remote_validator(jwt)
+                    else:
+                        ##
+                        ## Validator for any other provider will be configured. For now, returning True as default.
+                        ##
+                        is_valid = True
                 else:
                     is_valid = False
                 return is_valid
-            def verify_jwt(jwt):
+            def okta_jwt_remote_validator(jwt):
                 '''
+                These lines are commented out for now.
+                This will be improved to use ENV Variables.
+                
                 client_id = "0oa13mjq7j9jacY8M357"
                 client_secret = "HmQiJTBhJe46Ezk1nzapp138_8NbNI7aZcZpvJUk"
                 creds = client_id + ":" + client_secret
@@ -50,7 +59,7 @@ def auth_required(method=None):
                 else:
                     return Response(render_template("403.html"), status=403, mimetype="text/html")
             if method == 'oauth2':
-                auth = oauth2()
+                auth = oauth2(okta)
                 if auth == True:
                     return f(*args, **kwargs)
                 else:
