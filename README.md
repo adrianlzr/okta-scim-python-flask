@@ -6,7 +6,9 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 
 * Please note that this example might suffer modifications at any giventime. It is currently a "work in progress". 
 
-# Table of Contents:
+-------------
+
+## Table of Contents:
 * [Requirements](https://github.com/adrianlazar-personal/okta-scim-python-flask#requirements)
 * [Endpoints](https://github.com/adrianlazar-personal/okta-scim-python-flask#Endpoints)
 * [Getting Sarted](https://github.com/adrianlazar-personal/okta-scim-python-flask#getting-started)
@@ -15,6 +17,8 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 * [OAuth Authentication](https://github.com/adrianlazar-personal/okta-scim-python-flask#oauth-authentication)
 * [Bugs](https://github.com/adrianlazar-personal/okta-scim-python-flask#bugs)
 * [Suggestions](https://github.com/adrianlazar-personal/okta-scim-python-flask#suggestions)
+
+-------------
 
 ## Requirements.
 * MYSQL Database (I am using XAMPP for local development)
