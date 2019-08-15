@@ -116,9 +116,9 @@ Let's create a new application by using the Okta Application Integration Wizzard
 #### Leveraging Okta as the Authorization Server:
 * Create a OIDC Web App - Okta Admin UI -> Applications -> Add Aplication -> Create New App -> Platform: Web,  Sign on method: OpenID Connect
 * Login Redirect URL: This will be composed from: 
-    * Production domain: https://system-admin.**okta**.com/admin/app/cpc/{**application_name**}/oauth/callback
-    * Preview domain: https://system-admin.**oktapreview**.com/admin/app/cpc/{**application_name**}/oauth/callback
-    * {**application_name**} is the internal SCIM application name created above. This can be found in Okta Admin ->
+    * Production domain: https://system-admin.okta.com/admin/app/cpc/{application_name}/oauth/callback
+    * Preview domain: https://system-admin.oktapreview.com/admin/app/cpc/{application_name}/oauth/callback
+    * **{application_name}** is the internal SCIM application name created above. This can be found in Okta Admin ->
         Directories -> Profile Editor -> SCIM app - Profile -> Variable name
 * Assign you (the Super Admin User) to the OIDC application you just created
 * Before moving on to the final step, in order for this flow to succeed, you need to configure a default scope for your Authorization Server. 
