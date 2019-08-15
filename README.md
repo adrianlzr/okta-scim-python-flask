@@ -64,7 +64,11 @@ Let's create a new application by using the Okta Application Integration Wizzard
 - Unique identifier field for users: *userName*
 - Authentication mode: This SCIM Server Supports Basic Auth and Oauth2. 
 - For Basic Auth, the credentials are: userName: 'user' and password: 'p@ss' (these values can be modified in [core->RequireAuth.py](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/f51edff3388ec0d9c5e7c72d5937f9d9ca0a116b/core/RequireAuth.py#L47))
-- If you would like to use Oauth2, see the bellow section.
+- If you would like to use OAuth2, see the [OAuth Authentication](https://github.com/adrianlazar-personal/okta-scim-python-flask#oauth-authentication) section.
+
+## OAuth Authentication
+Test
+
 # Bugs?
 If you find any bugs with this SCIM server please open a new Issue and it will be investigated. 
 
