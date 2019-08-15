@@ -18,8 +18,14 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 
 ## Getting started.
 ### Local environment setup
-Let's create a new folder called "scim-server", which will server as the root of our project and clone this example.
+This example assumes you are using a Windows machine. If you are using a different OS, change the path mindset accordingly. 
 
+The project base path will be: 
+```
+C:\Users\your_user\Desktop
+```
+
+Let's create a new folder called "scim-server", which will server as the root of our project and clone this example.
 ```
 mkdir scim-server && cd scim-server
 git clone https://github.com/adrianlazar-okta/flask-python-scim-server.git
