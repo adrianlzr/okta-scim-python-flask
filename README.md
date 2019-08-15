@@ -110,7 +110,8 @@ Let's create a new application by using the Okta Application Integration Wizzard
 
 ## OAuth Authentication
 
-##### ℹ️ Disclaimer: Currently, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method="oauth2", **okta=False**)*. The second paramter "okta" is not a required parameter, and it's default value is set to **True**. 
+#### ℹ️ Disclaimer: 
+    Currently, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token   Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method="oauth2", **okta=False**)*. The second paramter "okta"    is not a required parameter, and it's default value is set to **True**. 
 
 #### Leveraging Okta as the Authorization Server:
 * Create a OIDC Web App - Okta Admin UI -> Applications -> Add Aplication -> Create New App -> Platform: Web,  Sign on method: OpenID Connect
