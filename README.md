@@ -58,9 +58,13 @@ Now you can access http://localhost:4040 to monitor the trafic to your scim serv
 After you have created a free account on [Okta Developer Account](https://developer.okta.com/signup/), you should have access to your Okta Admin dashboard. 
 Let's create a new application by using the Okta Application Integration Wizzard:
 - Okta Admin UI -> Applications -> Add Application -> Create New App -> Platform: Web, Sign on method - SAML 2.0 (I will build a SAML app with Flask later.)
-- Follow the configuration prompts, provide the requested URLs(any url will work, for ex https://google.com) and a App name.
-- Once the application is created, go to the General Tab -> Edit -> Select the option "SCIM" on the Provisioning section 
-
+- Follow the configuration prompts, provide the requested URLs (any url will work, for ex https://google.com).
+- Once the application is created, go to the General Tab -> Edit -> Select the option "SCIM" on the Provisioning section and Save.
+- The Provisioning Tab should now be available. On this Tab, let's edit the settings, provide the SCIM connector base URL (if you are using ngrok, provide the url from ngrok so you can intercept the http requests, and append /scim/v2 at the end.)
+- Unique identifier field for users: *userName*
+- Authentication mode: This SCIM Server Supports Basic Auth and Oauth2. 
+- For Basic Auth, the credentials are: userName: 'user' and password: 'p@ss' (these values can be modified in [core->RequireAuth.py](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/f51edff3388ec0d9c5e7c72d5937f9d9ca0a116b/core/RequireAuth.py#L47))
+- If you would like to use Oauth2, see the bellow section.
 # Bugs?
 If you find any bugs with this SCIM server please open a new Issue and it will be investigated. 
 
