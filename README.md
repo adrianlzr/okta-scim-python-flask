@@ -56,7 +56,7 @@ cd C:\Users\your_user\Desktop\scim-server
 ```
 Install the dependencies 
 ```
-python3 -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 Install [XAMPP](https://www.apachefriends.org/download.html) and start the the mysql server and create a database named 'scim'
 ```
