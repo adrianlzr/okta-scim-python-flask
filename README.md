@@ -6,6 +6,16 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 
 * Please note that this example might suffer modifications at any giventime. It is currently a "work in progress". 
 
+# Table of Contents:
+* [Requirements](https://github.com/adrianlazar-personal/okta-scim-python-flask#requirements)
+* [Endpoints](https://github.com/adrianlazar-personal/okta-scim-python-flask#Endpoints)
+* [Getting Sarted](https://github.com/adrianlazar-personal/okta-scim-python-flask#getting-started)
+    * [Local Environment Setup](https://github.com/adrianlazar-personal/okta-scim-python-flask#local-environment-setup)
+    * [Okta Setup](https://github.com/adrianlazar-personal/okta-scim-python-flask#okta-setup)
+* [OAuth Authentication](https://github.com/adrianlazar-personal/okta-scim-python-flask#oauth-authentication)
+* [Bugs](https://github.com/adrianlazar-personal/okta-scim-python-flask#bugs)
+* [Suggestions](https://github.com/adrianlazar-personal/okta-scim-python-flask#suggestions)
+
 ## Requirements.
 * MYSQL Database (I am using XAMPP for local development)
 * Python3.6 - minimum required version. 
@@ -33,7 +43,7 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 -------------
 
 ## Getting started.
-### Local environment setup
+### Local Environment Setup
 **This example assumes you are using a Windows machine. If you are using a different OS, change the path mindset accordingly.**
 
 The project base path will be: 
