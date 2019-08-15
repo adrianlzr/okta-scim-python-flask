@@ -2,3 +2,4 @@ __pycache__
 .github
 Dockerfile
 .code-workspace
+scim.code-workspace
