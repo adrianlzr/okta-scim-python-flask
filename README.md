@@ -17,7 +17,7 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 -------------
 
 ## Getting started.
-
+### Local environment setup
 Let's create a new folder called "scim-server", which will server as the root of our project and clone this example.
 
 ```
@@ -53,6 +53,13 @@ Start ngrok to listen on port 5000 ( port used by the scim server).
 ngrok http 5000
 ```
 Now you can access http://localhost:4040 to monitor the trafic to your scim server running on port 5000. 
+
+## Okta Setup
+After you have created a free account on [Okta Developer Account](https://developer.okta.com/signup/), you should have access to your Okta Admin dashboard. 
+Let's create a new application by using the Okta Application Integration Wizzard:
+- Okta Admin UI -> Applications -> Add Application -> Create New App -> Platform: Web, Sign on method - SAML 2.0 (I will build a SAML app with Flask later.)
+- Follow the configuration prompts, provide the requested URLs(any url will work, for ex https://google.com) and a App name.
+- Once the application is created, go to the General Tab -> Edit -> Select the option "SCIM" on the Provisioning section 
 
 # Bugs?
 If you find any bugs with this SCIM server please open a new Issue and it will be investigated. 
