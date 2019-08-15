@@ -126,7 +126,7 @@ Let's create a new application by using the [Okta Application Integration Wizzar
 
 #### ℹ️ Disclaimer: 
 * Okta Only supports the [Authorization Code Flow](https://developer.okta.com/docs/guides/implement-auth-code/overview/) for SCIM integrations.
-* At the time being, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method="oauth2", **okta=False**)*. The second paramter"okta"    is not a required parameter, and it's default value is set to **True**. 
+* At the time being, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method="oauth2", **okta=False**)*. The second paramter"okta" is not a required parameter, and it's default value is set to **True**. 
 
 *Furthermore, currently there is no actual validation. This is a work in progress. I will create a method for validating any type of JWT locally.* 
 
@@ -137,12 +137,12 @@ Let's create a new application by using the [Okta Application Integration Wizzar
     * Preview domain: https://system-admin.oktapreview.com/admin/app/cpc/{application_name}/oauth/callback
     * **{application_name}** is the internal SCIM application name created above. This can be found in Okta Admin ->
         Directories -> Profile Editor -> SCIM app - Profile -> Variable name
-* Assign you (the Super Admin User) to the OIDC application you just created
+* Assign yourself (Super Admin User) to the OIDC application you just created
 * Before moving on to the final step, in order for this flow to succeed, you need to configure a default scope for your Authorization Server. 
     * Custom Auhtorization Server is required!!
-    * Okta Admin UI -> Security -> API -> Authorization Servers -> Select the "default" server -> Scopes -> Add SCope
+    * Okta Admin UI -> Security -> API -> Authorization Servers -> Select the "default" server -> Scopes -> Add Scope
         -> Name: authorization_service, Display Name: SCIM Authorization Service, Check the option "Set as a default scope."
-    * *A default scope is required because this process does not allow you to specify a scope to be used. Using Okta as the Authorization server (URL PATH /oauth2/v1/***) will not allow you to set a default scope and the request will fail.*
+    * *A default scope is required because this process does not allow you to specify a scope to be used. Using Okta as the Authorization server (URL PATH /oauth2/v1/xxx) will not allow you to set a default scope and the request will fail.*
 * SCIM Application -> On the Provisioning tab (Integration), on the Authentication mode, select Oauth 2
 * After Oauth 2 is selected 4 new fileds will need to be configured:
     * Access token endpoint URI: https://yourOktaDomain.okta/oktapreview.com/oauth2/v1/{authorizationServerId}/token
@@ -153,13 +153,6 @@ Let's create a new application by using the [Okta Application Integration Wizzar
 
 #### Leveraging A different Oauth2 Provider as the Authorization Server:
 
-* Create a OIDC Web App - Okta Admin UI -> Applications -> Add Aplication -> Create New App -> Platform: Web,  Sign on method: OpenID Connect
-* Login Redirect URL: This will be composed from: 
-    * Production domain: https://system-admin.okta.com/admin/app/cpc/{application_name}/oauth/callback
-    * Preview domain: https://system-admin.oktapreview.com/admin/app/cpc/{application_name}/oauth/callback
-    * **{application_name}** is the internal SCIM application name created above. This can be found in Okta Admin ->
-        Directories -> Profile Editor -> SCIM app - Profile -> Variable name
-* Assign you (the Super Admin User) to the OIDC application you just created
 * SCIM Application -> On the Provisioning tab (Integration), on the Authentication mode, select Oauth 2
 * After Oauth 2 is selected 4 new fileds will need to be configured:
     * Access token endpoint URI: https://your.oauth2.provider/token
