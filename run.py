@@ -5,12 +5,23 @@ from core.Database import Database
 from core.RequireAuth import auth_required
 from operations.Users import Users
 from operations. Groups import Groups
-from sp_config import data
+from core.ServiceProviderConfig import return_sp_config
 ops_users = Users()
 ops_groups = Groups()
-spc_data = data
 
 app = Flask(__name__)
+
+@app.route("/scim/v2/ServiceProviderConfig", methods =['GET'])
+@crossdomain(origin='*')
+def service_provider_config_route():
+    url = request.base_url
+    data = return_sp_config(url)
+    response = app.response_class(
+        response = json.dumps(data),
+        status = 200,
+        mimetype = 'application/json'
+    )
+    return response
 
 @app.route("/scim/users")
 @crossdomain(origin='*')
@@ -49,16 +60,7 @@ def default_scim_route():
     mimetype='text/html'   
     )
     return response
-@app.route("/scim/v2/ServiceProviderConfigs", methods =['GET'])
-@crossdomain(origin='*')
-def service_provider_config_route():
-    data = spc_data
-    response = app.response_class(
-        response = json.dumps(data),
-        status = 200,
-        mimetype = 'application/json'
-    )
-    return response
+
 @app.route("/scim/v2/Users", methods = ['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
 @auth_required(method='oauth2')
@@ -153,7 +155,7 @@ def users_by_id_route(id):
             response = json.dumps(get_user),
             status = http_code,
             mimetype='application/scim+json'
-        )
+        )    
         return response 
 
     elif request.method == 'PUT':
