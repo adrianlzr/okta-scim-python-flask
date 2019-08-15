@@ -36,7 +36,7 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 * /scim/users - Returns all the users(no filtering), no auth enforced.
 * /scim/v2 - Base SCIM path - auth enforced
 * /scim/v2/ServiceProviderConfig - [RFC7644#section-4](https://tools.ietf.org/html/rfc7644#section-4)
-*Other SCIM-relevant endpoints will be added soon.*
+* *Other SCIM-relevant endpoints will be added soon.*
 #### Users Endpoints
 * /scim/v2/Users - Base Users path: Supported HTTP methods: [**GET**, **POST**]
 * /scim/v2/Users/**{userId}** - Individual User path: Supported HTTP methods: [**GET**, **POST**, **PUT**, **PATCH**, **DELETE**]
