@@ -139,7 +139,7 @@ Let's create a new application by using the [Okta Application Integration Wizzar
         Directories -> Profile Editor -> SCIM app - Profile -> Variable name
 * Assign yourself (Super Admin User) to the OIDC application you just created
 * Before moving on to the final step, in order for this flow to succeed, you need to configure a default scope for your Authorization Server. 
-    * Custom Auhtorization Server is required!!
+    * Custom Authorization Server is required!!
     * Okta Admin UI -> Security -> API -> Authorization Servers -> Select the "default" server -> Scopes -> Add Scope
         -> Name: authorization_service, Display Name: SCIM Authorization Service, Check the option "Set as a default scope."
     * *A default scope is required because this process does not allow you to specify a scope to be used. Using Okta as the Authorization server (URL PATH /oauth2/v1/xxx) will not allow you to set a default scope and the request will fail.*
