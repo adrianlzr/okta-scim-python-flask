@@ -45,7 +45,7 @@ Install the dependencies
 ```
 python3 -m pip install -r requirements.txt
 ```
-Start the mysql server and create a database named 'scim'
+Install [XAMPP](https://www.apachefriends.org/download.html) and start the the mysql server and create a database named 'scim'
 ```
 CREATE DATABASE scim;
 ```
