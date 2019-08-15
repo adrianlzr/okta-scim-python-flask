@@ -1,4 +1,7 @@
 __pycache__
+core/__pycache__
+models/__pycache__
+operations/__pycache__
 .github
 Dockerfile
 scim.code-workspace
