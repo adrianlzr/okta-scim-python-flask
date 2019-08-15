@@ -18,7 +18,7 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 
 ## Getting started.
 ### Local environment setup
-This example assumes you are using a Windows machine. If you are using a different OS, change the path mindset accordingly. 
+**This example assumes you are using a Windows machine. If you are using a different OS, change the path mindset accordingly.**
 
 The project base path will be: 
 ```
@@ -51,11 +51,11 @@ CREATE DATABASE scim;
 ```
 Start the server
 
-Windows Users:
+**Windows Users:**
 ```
 python run.py
 ```
-Other OS:
+**Other OS:**
 ```
 python3 run.py
 ```
@@ -64,10 +64,11 @@ Start ngrok to listen on port 5000 ( port used by the scim server).
 ```
 ngrok http 5000
 ```
-Now you can access http://localhost:4040 to monitor the trafic to your scim server running on port 5000. 
+Now you can access http://localhost:4040 to monitor the trafic to your scim server running on port **5000**. 
 
 ## Okta Setup
-After you have created a free account on [Okta Developer Account](https://developer.okta.com/signup/), you should have access to your Okta Admin dashboard. 
+After you have created a free account on [Okta Developer Account](https://developer.okta.com/signup/), you should have access to your Okta Admin dashboard.
+
 Let's create a new application by using the Okta Application Integration Wizzard:
 - Okta Admin UI -> Applications -> Add Application -> Create New App -> Platform: Web, Sign on method - SAML 2.0 (I will build a SAML app with Flask later.)
 
@@ -77,13 +78,17 @@ Let's create a new application by using the Okta Application Integration Wizzard
 
 - The Provisioning Tab should now be available. On this Tab, let's edit the settings, provide the SCIM connector base URL (if you are using ngrok, provide the url from ngrok so you can intercept the http requests, and append /scim/v2 at the end.)
 
-- Unique identifier field for users: *userName*
+- Unique identifier field for users: **userName**
+
+- Select all the **Supported provisioning actions**
 
 - Authentication mode: This SCIM Server Supports Basic Auth and Oauth2. 
 
-- For Basic Auth, the credentials are: userName: 'user' and password: 'p@ss' (these values can be modified in [core->RequireAuth.py](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/f51edff3388ec0d9c5e7c72d5937f9d9ca0a116b/core/RequireAuth.py#L47))
+- For Basic Auth, the credentials are: userName: **user** and password: **p@ss** (these values can be modified in [core->RequireAuth.py](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/f51edff3388ec0d9c5e7c72d5937f9d9ca0a116b/core/RequireAuth.py#L47))
 
 - If you would like to use OAuth2, see the [OAuth Authentication](https://github.com/adrianlazar-personal/okta-scim-python-flask#oauth-authentication) section.
+
+- Test Connector Configuration
 
 ## OAuth Authentication
 Test
