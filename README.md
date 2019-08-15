@@ -7,6 +7,7 @@ Python SCIM Server (based on Flask) that supports /Users and /Groups endpoint, c
 * Please note that this example might suffer modifications at any giventime. It is currently a "work in progress". 
 
 ## Requirements.
+* MYSQL Database (I am using XAMPP for local development)
 * Python3.6 - minimum required version. 
 * Pip
 * Python Virtual Env - I recommend installing [virtualenv](https://www.geeksforgeeks.org/python-virtual-environment/)
@@ -37,6 +38,10 @@ cd C:\Users\your_user\Desktop\scim-server
 Install the dependencies 
 ```
 python3 -m pip install -r requirements.txt
+```
+Start the mysql server and create a database named 'scim'
+```
+CREATE DATABASE scim;
 ```
 Start the server
 ```
