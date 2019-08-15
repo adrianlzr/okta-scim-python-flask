@@ -99,7 +99,7 @@ Now you can access http://localhost:4040 to monitor the trafic to your scim serv
 ## Okta Setup
 After you have created a free account on [Okta Developer Account](https://developer.okta.com/signup/), you should have access to your Okta Admin dashboard.
 
-Let's create a new application by using the Okta Application Integration Wizzard:
+Let's create a new application by using the [Okta Application Integration Wizzard](https://help.okta.com/en/prod/Content/Topics/Apps/Apps_App_Integration_Wizard.htm):
 - Okta Admin UI -> Applications -> Add Application -> Create New App -> Platform: Web, Sign on method - SAML 2.0 (I will build a SAML app with Flask later.)
 
 - Follow the configuration prompts, provide the requested URLs (any url will work, for ex https://google.com).
@@ -125,7 +125,9 @@ Let's create a new application by using the Okta Application Integration Wizzard
 ## OAuth Authentication
 
 #### ℹ️ Disclaimer: 
-Currently, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method="oauth2", **okta=False**)*. The second paramter"okta"    is not a required parameter, and it's default value is set to **True**. 
+* Okta Only supports the [Authorization Code Flow](https://developer.okta.com/docs/guides/implement-auth-code/overview/) for SCIM integrations.
+* At the time being, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method="oauth2", **okta=False**)*. The second paramter"okta"    is not a required parameter, and it's default value is set to **True**. 
+
 *Furthermore, currently there is no actual validation. This is a work in progress. I will create a method for validating any type of JWT locally.* 
 
 #### Leveraging Okta as the Authorization Server:
