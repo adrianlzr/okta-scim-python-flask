@@ -64,6 +64,8 @@ def auth_required(method=None, okta=True):
                     return f(*args, **kwargs)
                 else:
                     return Response(render_template("403.html"), status=403, mimetype="text/html")
+            if method is None:
+                return f(*args, **kwargs)
         wrapper.__name__ = f.__name__
         return wrapper
     return decorator
