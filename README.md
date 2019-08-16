@@ -126,7 +126,7 @@ Let's create a new application by using the [Okta Application Integration Wizzar
 
 #### ℹ️ Disclaimer: 
 * Okta Only supports the [Authorization Code Flow](https://developer.okta.com/docs/guides/implement-auth-code/overview/) for SCIM integrations.
-* At the time being, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method="oauth2", **okta=False**)*. The second paramter"okta" is not a required parameter, and it's default value is set to **True**. 
+* At the time being, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method=auth_method, **okta=False**)*. The second paramter"okta" is not a required parameter, and it's default value is set to **True**. 
 
 *Furthermore, currently there is no actual validation. This is a work in progress. I will create a method for validating any type of JWT locally.* 
 
