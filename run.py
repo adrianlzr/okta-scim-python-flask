@@ -8,6 +8,7 @@ from operations. Groups import Groups
 from core.ServiceProviderConfig import return_sp_config
 ops_users = Users()
 ops_groups = Groups()
+auth_method = 'oauth2' ### this can be switched to 'basic_auth' or None.
 
 app = Flask(__name__)
 
@@ -52,7 +53,7 @@ def user(userId):
 
 @app.route("/scim/v2", methods = ['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method=auth_method)
 def default_scim_route():
     response = app.response_class(
     response = "<h1>Hello World</h1>",
@@ -63,7 +64,7 @@ def default_scim_route():
 
 @app.route("/scim/v2/Users", methods = ['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method=auth_method)
 def users_route():
     req_url = request.base_url
     
@@ -137,7 +138,7 @@ def users_route():
 
 @app.route("/scim/v2/Users/<string:id>", methods = ['GET', 'PUT', 'PATCH'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method=auth_method)
 def users_by_id_route(id):
     id = str(id)
     req_url = request.base_url
@@ -192,7 +193,7 @@ def users_by_id_route(id):
 
 @app.route("/scim/v2/Groups", methods = ['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method=auth_method)
 def groups_route():    
     req_url = request.base_url
 
@@ -266,7 +267,7 @@ def groups_route():
 
 @app.route("/scim/v2/Groups/<string:id>", methods = ['GET', 'PUT', 'PATCH', 'DELETE'])
 @crossdomain(origin='*')
-@auth_required(method='oauth2')
+@auth_required(method=auth_method)
 def groups_by_id_route(id):
     id = str(id)
     req_url = request.base_url
