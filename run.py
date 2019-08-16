@@ -102,6 +102,7 @@ def users_route():
                 status = http_code,
                 mimetype='application/scim+json'
             )
+            time.sleep(1)
             return response            
 
         else: 
@@ -133,6 +134,7 @@ def users_route():
             status = http_code,
             mimetype='application/scim+json'
         )
+        time.sleep(5)
         return response
 
 @app.route("/scim/v2/Users/<string:id>", methods = ['GET', 'PUT', 'PATCH'])
@@ -155,7 +157,8 @@ def users_by_id_route(id):
             response = json.dumps(get_user),
             status = http_code,
             mimetype='application/scim+json'
-        )    
+        )
+        time.sleep(2)    
         return response 
 
     elif request.method == 'PUT':
@@ -172,6 +175,7 @@ def users_by_id_route(id):
             status = http_code,
             mimetype='application/scim+json'
         )
+        time.sleep(5)
         return response
 
     elif request.method == 'PATCH':
