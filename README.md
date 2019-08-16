@@ -1,4 +1,4 @@
-#REPRO for case 00649440 JIRA - OKTA-244438
+# REPRO for case 00649440 JIRA - OKTA-244438
 ## DO NOT USE if you're not looking for reproducing the same behavior.
 ### Response times have been 'artifically increased' with time.sleep().  
 
