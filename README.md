@@ -126,9 +126,13 @@ Let's create a new application by using the [Okta Application Integration Wizzar
 
 #### ℹ️ Disclaimer: 
 * Okta Only supports the [Authorization Code Flow](https://developer.okta.com/docs/guides/implement-auth-code/overview/) for SCIM integrations.
-* At the time being, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Remotely. This module allows you to disable Okta as the default Authorization Provider: *@auth_required(method=auth_method, **okta=False**)*. The second paramter"okta" is not a required parameter, and it's default value is set to **True**. 
-
-*Furthermore, currently there is no actual validation. This is a work in progress. I will create a method for validating any type of JWT locally.* 
+* At the time being, the SCIM Server [RequireAuth module](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/master/core/RequireAuth.py) can only verify the Token  Validity Locally for a JWT issued by Okta, by using my [PyJwtValidator](https://github.com/adrianlazar-personal/py-jwt-validator) module. 
+* To change the authentication method between **Basic Auth** and **OAuth2** the variable [auth_method](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/b6317c52201bf8aa2d28bed587c80bd775845e4f/run.py#L11) has to be set accordingly.
+* For **OAuth2**, Okta is enabled as a JWT provider by default. To override this setting, the decorator [@auth_required](https://github.com/adrianlazar-personal/okta-scim-python-flask/blob/b6317c52201bf8aa2d28bed587c80bd775845e4f/run.py#L56) has to be modified for each route: 
+```
+@auth_required(auth_method, okta=False)
+```
+ℹ️ *Setting okta=False will not perform any type of validation as the [PyJwtValidator](https://github.com/adrianlazar-personal/py-jwt-validator) module is not yet enhanced to check the signature for other providers.*
 
 #### Leveraging Okta as the Authorization Server:
 * Create a OIDC Web App - Okta Admin UI -> Applications -> Add Aplication -> Create New App -> Platform: Web,  Sign on method: OpenID Connect
