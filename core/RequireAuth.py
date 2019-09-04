@@ -1,5 +1,8 @@
 import requests, base64, json
 from flask import request, Response, render_template
+from py_jwt_validator import PyJwtValidator, PyJwtException
+
+
 def auth_required(method=None, okta=True):
     def decorator(f):
         def wrapper(*args, **kwargs):
@@ -7,8 +10,8 @@ def auth_required(method=None, okta=True):
                 auth_header = request.headers.get("Authorization")
                 if auth_header and 'Basic' in auth_header:
                     auth_header = auth_header[6:25]
-                elif auth_header and 'Bearer' in auth_header:
-                    auth_header = auth_header
+                elif auth_header and 'Bearer ' in auth_header:
+                    auth_header = auth_header[len('Bearer '):len(auth_header)]
                 elif not auth_header:
                     auth_header = 'empty'
                 return auth_header
@@ -24,7 +27,7 @@ def auth_required(method=None, okta=True):
                 jwt = get_header()
                 if 'empty' not in jwt:
                     if okta: 
-                        is_valid = okta_jwt_remote_validator(jwt)
+                        is_valid = okta_jwt_local_validator(jwt)
                     else:
                         ##
                         ## Validator for any other provider will be configured. For now, returning True as default.
@@ -33,25 +36,12 @@ def auth_required(method=None, okta=True):
                 else:
                     is_valid = False
                 return is_valid
-            def okta_jwt_remote_validator(jwt):
-                '''
-                These lines are commented out for now.
-                This will be improved to use ENV Variables.
-                
-                client_id = "0oa13mjq7j9jacY8M357"
-                client_secret = "HmQiJTBhJe46Ezk1nzapp138_8NbNI7aZcZpvJUk"
-                creds = client_id + ":" + client_secret
-                b64_creds = base64.b64encode(creds.encode()).decode()
-                auth_header = "Basic " + b64_creds
-                headers = {"Authorization":auth_header}
-                token = str(jwt[7:(len(jwt))])
-                body = {"token":token}
-                response = requests.post("https://adrian.okta.com/oauth2/ausa8dtz9H5QTLpmC356/v1/introspect", data=body, headers=headers)
-                response_json = response.json()
-                active = response_json["active"]
-                '''
-                active = True
-                return active
+            def okta_jwt_local_validator(jwt):
+                try:
+                    verify = PyJwtValidator(jwt)
+                    return True
+                except PyJwtException:
+                    return False
             if method == 'basic_auth':
                 auth = basic_auth("user", "p@ss")
                 if auth == True:
