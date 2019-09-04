@@ -5,3 +5,7 @@ operations/__pycache__
 .github
 Dockerfile
 scim.code-workspace
+*.sqlite
+Pip*
+Pipfile
+Pipfile.*
