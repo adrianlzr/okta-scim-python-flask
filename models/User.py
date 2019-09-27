@@ -16,8 +16,11 @@ class User():
             "email":'',
             "groups":''
         }
-
-        user["active"] = True
+        try:
+            user["active"] = user_data_json["active"]
+        except KeyError:
+            user["active"] = True
+            pass
         #userName
         try:
             if user_data_json['userName']:
