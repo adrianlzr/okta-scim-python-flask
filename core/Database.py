@@ -17,7 +17,7 @@ class Database():
         mycursor.execute("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_NAME='Users' and TABLE_SCHEMA='scim'")
         myresult = mycursor.fetchall()
         if not myresult:
-            mycursor.execute("CREATE TABLE IF NOT EXISTS `Users` (`id` varchar(255) COLLATE utf8_general_ci NOT NULL,`active` int(11) NOT NULL,`userName` varchar(255) COLLATE utf8_general_ci NOT NULL,`givenName` varchar(255) COLLATE utf8_general_ci NOT NULL,`middleName` varchar(255) COLLATE utf8_general_ci NOT NULL,`familyName` varchar(255) COLLATE utf8_general_ci NOT NULL,`email` varchar(255) COLLATE utf8_general_ci NOT NULL,`password` varchar(255) COLLATE utf8_general_ci, PRIMARY KEY (`id`)) ENGINE = MyISAM;")
+            mycursor.execute("CREATE TABLE IF NOT EXISTS `Users` (`id` varchar(255) COLLATE utf8_general_ci NOT NULL,`active` INT(11) NOT NULL,`userName` varchar(255) COLLATE utf8_general_ci NOT NULL,`givenName` varchar(255) COLLATE utf8_general_ci NOT NULL,`middleName` varchar(255) COLLATE utf8_general_ci NOT NULL,`familyName` varchar(255) COLLATE utf8_general_ci NOT NULL,`email` varchar(255) COLLATE utf8_general_ci NOT NULL,`password` varchar(255) COLLATE utf8_general_ci, PRIMARY KEY (`id`)) ENGINE = MyISAM;")
 
         mycursor.execute("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_NAME='Groups' and TABLE_SCHEMA='scim'")
         myresult = mycursor.fetchall()
@@ -213,9 +213,18 @@ class Database():
             error_message = "User not found."
             scim_error = scim_core.CreateSCIMEerror(error_message, status_code)
             return scim_error            
-        else: 
+        else:
             try:
-                mycursor.execute("UPDATE Users SET userName='{}', givenName='{}', middleName='{}', familyName='{}', email='{}' WHERE id='{}'".format(user_model['userName'], user_model['givenName'], user_model['middleName'], user_model['familyName'], user_model['email'], id))
+                active = user_model['active']
+                if active:
+                    active = 1
+                else:
+                    active = 0 
+            except KeyError:
+                active = 1
+                pass
+            try:
+                mycursor.execute("UPDATE Users SET active={}, userName='{}', givenName='{}', middleName='{}', familyName='{}', email='{}' WHERE id='{}'".format(active, user_model['userName'], user_model['givenName'], user_model['middleName'], user_model['familyName'], user_model['email'], id))
             except mysql.connector.Error as err:
                 status_code = 400
                 error_message = "{}".format(err)
