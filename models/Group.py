@@ -56,7 +56,7 @@ class Group():
         location = d + "/Users/" + group_members["value"]
         membership["value"] = group_members["value"]
         membership["ref"] = location
-        membership["display"] = group_members["display"]
+        #membership["display"] = group_members["display"]
         location = ''
         
         return membership
