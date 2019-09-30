@@ -56,7 +56,10 @@ class Group():
         location = d + "/Users/" + group_members["value"]
         membership["value"] = group_members["value"]
         membership["ref"] = location
-        #membership["display"] = group_members["display"]
+        try:
+            membership["display"] = group_members["display"]
+        except KeyError:
+            pass ##membership display will remain empty, however, it will be returned later. This can be improoved.
         location = ''
         
         return membership
