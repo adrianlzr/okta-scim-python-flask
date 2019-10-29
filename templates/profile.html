@@ -8,17 +8,65 @@
     {% else %}
         <title>Hello - Default</title>
     {% endif %}
+    <style>
+        html{
+            text-align: center;
+        }
+        .json-output{
+            background-color: #f5f5f5;
+            display: inline-block;
+            width: 800px;
+            text-align: left;
+            height: 500px;
+            overflow: auto;
+            outline: 1px solid #ccc; 
+        }
+        pre {
+
+            padding: 5px; margin: 5px; 
+        }
+        .string { color: rgb(44, 134, 2); }
+        .number { color: darkorange; }
+        .boolean { color: blue; }
+        .null { color: magenta; }
+        .key { color: rgb(204, 36, 7); }
+    </style>
 </head>
 <body>
     <div>
-        {% if firstName %}
-            <h3>Hello, {{ firstName }}</h3>
-            <p>Your username is: {{ userName }}</p>
+        {% if user %}
+            <h3>Hello, {{ title }}</h3>
+            <div id="user" style="display: none;">{{user}}</div>
+            <div class="json-output"><pre><code id="json"></code></pre></div>
         {% else %}
             <p>Something weird happened.</p>
         {% endif %}
     </div>
 
-    
+    <script>
+        
+        function syntaxHighlight(json) {
+           if (typeof json != 'string') {
+               json = JSON.stringify(json, undefined, 2);
+           }
+           json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+           return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+               var cls = 'number';
+               if (/^"/.test(match)) {
+                   if (/:$/.test(match)) {
+                       cls = 'key';
+                   } else {
+                       cls = 'string';
+                   }
+               } else if (/true|false/.test(match)) {
+                   cls = 'boolean';
+               } else if (/null/.test(match)) {
+                   cls = 'null';
+               }
+               return '<span class="' + cls + '">' + match + '</span>';
+           });
+        }    
+        document.querySelector("#json").innerHTML = syntaxHighlight(JSON.parse(document.querySelector("#user").textContent), null, 2)    
+    </script>
 </body>
 </html>

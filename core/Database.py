@@ -57,11 +57,12 @@ class Database():
         count = int(count)
 
         try:
-            mycursor.execute("SELECT * FROM `Users` LIMIT {}, {}".format((start_index-1), count))
+            mycursor.execute("SELECT * FROM `Users` WHERE active='1' LIMIT {}, {}".format((start_index-1), count))
         except mysql.connector.Error as err:
             status_code = 400
             error_message = "{}".format(err)
             scim_error = scim_core.CreateSCIMEerror(error_message, status_code)
+            raise
             return scim_error
         myresults = mycursor.fetchall()
         rows = [list(i) for i in myresults]

@@ -24,6 +24,7 @@ class SCIMCore():
             }],
             "active":False,
             "groups":[],
+            "custom": None,
             "meta":{
                 "resourceType":"User",
                 "created":"TBA",

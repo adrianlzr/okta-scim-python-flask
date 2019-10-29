@@ -8,7 +8,7 @@ from operations. Groups import Groups
 from core.ServiceProviderConfig import return_sp_config
 ops_users = Users()
 ops_groups = Groups()
-auth_method = 'oauth2' ### this can be switched to 'basic_auth' or None.
+auth_method = None ### this can be switched to 'basic_auth' or None.
 
 app = Flask(__name__)
 
@@ -39,8 +39,8 @@ def users():
         all_users.append(userName)
         profileUrls.append(profileUrl)
         i += 1
-    zip_users = zip(all_users, profileUrls)
-    users = dict(zip_users)
+    #zip_users = zip(all_users, profileUrls)
+    users = dict(zip(all_users, profileUrls))#dict(zip_users)
     return render_template("index.html",users=users, title="All Users")
 @app.route("/scim/users/<string:userId>")
 @crossdomain(origin='*')
@@ -49,7 +49,7 @@ def user(userId):
     usr = ops_users.get_user(userId, req_url)
     userName = usr["userName"]
     firstName = usr["name"]["givenName"]
-    return render_template("profile.html",userName=userName, firstName=firstName, title=firstName)
+    return render_template("profile.html", title=f"{usr['name']['givenName']} {usr['name']['familyName']}", user=json.dumps(usr))
 
 @app.route("/scim/v2", methods = ['GET', 'OPTIONS'])
 @crossdomain(origin='*')
