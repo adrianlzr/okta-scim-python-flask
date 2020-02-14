@@ -32,13 +32,13 @@ def auth_required(method=None, okta=True):
                         ##
                         ## Validator for any other provider will be configured. For now, returning True as default.
                         ##
-                        is_valid = True
+                        is_valid = False
                 else:
                     is_valid = False
                 return is_valid
             def okta_jwt_local_validator(jwt):
                 try:
-                    verify = PyJwtValidator(jwt)
+                    PyJwtValidator(jwt)
                     return True
                 except PyJwtException:
                     return False

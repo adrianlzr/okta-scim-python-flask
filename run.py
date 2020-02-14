@@ -8,7 +8,7 @@ from operations. Groups import Groups
 from core.ServiceProviderConfig import return_sp_config
 ops_users = Users()
 ops_groups = Groups()
-auth_method = None ### this can be switched to 'basic_auth' or None.
+auth_method = "oauth2" ### this can be switched to 'basic_auth' / 'oauth2' or None.
 
 app = Flask(__name__)
 

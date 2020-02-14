@@ -9,3 +9,5 @@ scim.code-workspace
 Pip*
 Pipfile
 Pipfile.*
+env
+.bat
